@@ -1,0 +1,20 @@
+# Raw sequencing reads
+/data/raw/
+
+# Preprocessed sequencing reads
+/data/processed/bulk_fastq_trimmed/
+
+# Alignment files
+/data/processed/bulk_bam/
+
+# Reference genome and annotation
+/reference/GRCh38.primary_assembly.genome.fa
+/reference/gencode.v44.primary_assembly.annotation.gtf
+
+# STAR index: keep geneInfo.tab for GSEA
+/reference/STAR_index_GRCh38/*
+!/reference/STAR_index_GRCh38/geneInfo.tab
+
+# FastQC ZIP archives: keep HTML reports
+/results/fastqc_raw/_fastqc.zip
+/results/fastqc_trimmed/_fastqc.zip

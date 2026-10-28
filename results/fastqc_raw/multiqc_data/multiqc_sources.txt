@@ -1,0 +1,15 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	ERR1629988_1	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629988_1_fastqc.zip
+FastQC	all_sections	ERR1629982_2	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629982_2_fastqc.zip
+FastQC	all_sections	ERR1629985_1	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629985_1_fastqc.zip
+FastQC	all_sections	ERR1629984_1	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629984_1_fastqc.zip
+FastQC	all_sections	ERR1629983_2	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629983_2_fastqc.zip
+FastQC	all_sections	ERR1629987_2	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629987_2_fastqc.zip
+FastQC	all_sections	ERR1629988_2	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629988_2_fastqc.zip
+FastQC	all_sections	ERR1629987_1	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629987_1_fastqc.zip
+FastQC	all_sections	ERR1629983_1	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629983_1_fastqc.zip
+FastQC	all_sections	ERR1629986_2	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629986_2_fastqc.zip
+FastQC	all_sections	ERR1629986_1	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629986_1_fastqc.zip
+FastQC	all_sections	ERR1629984_2	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629984_2_fastqc.zip
+FastQC	all_sections	ERR1629985_2	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629985_2_fastqc.zip
+FastQC	all_sections	ERR1629982_1	/home/jzvoa/islet-t2d-project/results/fastqc_raw/ERR1629982_1_fastqc.zip

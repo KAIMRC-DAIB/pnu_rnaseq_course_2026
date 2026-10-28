@@ -1,0 +1,11 @@
+Donor,Source Donor ID,Disease,Sex,Age,BMI,HbA1c,Bulk,Bulk ENA run ID,ScRNA
+H1,,Non-diabetic,Male,43,30.8,5.00%,No,,Yes
+H2,,Non-diabetic,Male,25,24.7,5.30%,No,,Yes
+H3,HP1506401,Non-diabetic,Female,48,35,5.70%,Yes,ERR1629984 ,Yes
+H4,HP1507101,Non-diabetic,Male,22,32.9,5.40%,Yes,ERR1629985,Yes
+H5,,Non-diabetic,Male,27,31.8,,No,,Yes
+H6,HP1504901,Non-diabetic,Male,23,21.5,5.50%,Yes,ERR1629983,Yes
+T2D1,HP1504101T2D,T2D,Male,57,24,7.00%,Yes,ERR1629982,Yes
+T2D2,HP1508501T2D,T2D,Female,37,39.6,7.30%,Yes,ERR1629986   ,Yes
+T2D3,HP1525301T2D,T2D,Male,52,34.4,7.70%,Yes,ERR1629987 ,Yes
+T2D4,HP1526901T2D,T2D,Female,55,29.8,7.40%,Yes,ERR1629988,Yes

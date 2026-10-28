@@ -1,0 +1,47 @@
+Detecting adapter sequence for read1...
+GTCCTCTGCCTCCCGGCGGGTCTTGGGTGTGTAGAAGAAGCCTCGTTCCCCGCACACTAG
+
+Detecting adapter sequence for read2...
+AGGACAGGCTGCATCAGAAGAGGCCATCAAGCAGATCACTGTCCTTCTGCCATGGCCCTG
+
+Read1 before filtering:
+total reads: 28878254
+total bases: 2179181310
+Q20 bases: 2111935364(96.9142%)
+Q30 bases: 2079175927(95.4109%)
+
+Read2 before filtering:
+total reads: 28878254
+total bases: 2178850224
+Q20 bases: 2041408788(93.692%)
+Q30 bases: 2000914295(91.8335%)
+
+Read1 after filtering:
+total reads: 27290254
+total bases: 2057213441
+Q20 bases: 2004277004(97.4268%)
+Q30 bases: 1975371996(96.0217%)
+
+Read2 after filtering:
+total reads: 27290254
+total bases: 2058118297
+Q20 bases: 1977474123(96.0817%)
+Q30 bases: 1944242355(94.467%)
+
+Filtering result:
+reads passed filter: 54580508
+reads failed due to low quality: 2413898
+reads failed due to too many N: 44726
+reads failed due to too short: 717376
+reads with adapter trimmed: 674100
+bases trimmed due to adapters: 27022657
+
+Duplication rate: 32.9467%
+
+Insert size peak (evaluated by paired-end reads): 116
+
+JSON report: results/fastp_reports/ERR1629988.json
+HTML report: results/fastp_reports/ERR1629988.html
+
+fastp -i data/raw/bulk_fastq/ERR1629988_1.fastq.gz -I data/raw/bulk_fastq/ERR1629988_2.fastq.gz -o data/processed/bulk_fastq_trimmed/ERR1629988_1.trimmed.fastq.gz -O data/processed/bulk_fastq_trimmed/ERR1629988_2.trimmed.fastq.gz --detect_adapter_for_pe --qualified_quality_phred 20 --length_required 36 --thread 8 --json results/fastp_reports/ERR1629988.json --html results/fastp_reports/ERR1629988.html 
+fastp v0.23.4, time used: 171 seconds

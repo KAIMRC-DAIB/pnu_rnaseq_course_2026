@@ -1,0 +1,26 @@
+[2026-09-28 10:48:23,036] multiqc                                            [DEBUG  ]  This is MultiQC v1.21
+[2026-09-28 10:48:23,039] multiqc                                            [DEBUG  ]  Command used: /home/jzvoa/miniconda3/envs/bulk-rna/bin/multiqc results/fastqc_raw -o results/fastqc_raw
+[2026-09-28 10:48:23,679] multiqc                                            [WARNING]  MultiQC Version v1.35 now available!
+[2026-09-28 10:48:23,680] multiqc                                            [DEBUG  ]  Latest MultiQC version is v1.35, released 2026-05-13
+[2026-09-28 10:48:23,680] multiqc                                            [DEBUG  ]  Working dir : /home/jzvoa/islet-t2d-project
+[2026-09-28 10:48:23,680] multiqc                                            [DEBUG  ]  Template    : default
+[2026-09-28 10:48:23,680] multiqc                                            [DEBUG  ]  Running Python 3.10.14 | packaged by conda-forge | (main, Mar 20 2024, 12:45:18) [GCC 12.3.0]
+[2026-09-28 10:48:23,683] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, ccs, ngsderive, purple, conpair, isoseq, lima, peddy, somalier, methylqa, mosdepth, phantompeakqualtools, qualimap, bamdst, preseq, hifiasm, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, sambamba, gopeaks, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, fgbio, dragen, dragen_fastqc, dedup, pbmarkdup, damageprofiler, mapdamage, biobambam2, jcvi, mtnucratio, picard, vep, bakta, prokka, qc3C, nanostat, samblaster, samtools, sexdeterrmine, seqera_cli, eigenstratdatabasetools, bamtools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, umitools, truvari, megahit, bbmap, bismark, biscuit, diamond, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, cellranger, snpsplit, odgi, pangolin, nextclade, freyja, humid, kat, leehom, librarian, nonpareil, adapterRemoval, bbduk, clipandmerge, cutadapt, flexbar, sourmash, kaiju, bracken, kraken, malt, motus, trimmomatic, sickle, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, filtlong, prinseqplusplus, pychopper, porechop, pycoqc, minionqc, anglerfish, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap, spaceranger, xenome, xengsort, metaphlan, seqwho
+[2026-09-28 10:48:23,683] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmp5f8nwmr7
+[2026-09-28 10:48:23,690] multiqc                                            [INFO   ]  Search path : /home/jzvoa/islet-t2d-project/results/fastqc_raw
+[2026-09-28 10:48:24,300] multiqc                                            [DEBUG  ]  Summary of files that were skipped by the search: [skipped_module_specific_max_filesize: 182] // [skipped_no_match: 14]
+[2026-09-28 10:48:24,490] multiqc                                            [DEBUG  ]  No samples found: custom_content
+[2026-09-28 10:48:26,080] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 14 reports
+[2026-09-28 10:48:26,080] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_fastqc.txt
+[2026-09-28 10:48:26,414] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Resizing from 495x630 to fit the maximum size 900x500
+[2026-09-28 10:48:26,414] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Heatmap size: 900x500, px per element: 81.82x35.71
+[2026-09-28 10:48:26,426] multiqc.utils.software_versions                    [DEBUG  ]  Reading software versions from config.software_versions
+[2026-09-28 10:48:26,429] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_software_versions.txt
+[2026-09-28 10:48:26,479] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_general_stats.txt
+[2026-09-28 10:48:26,480] multiqc                                            [DEBUG  ]  Compressing plot data
+[2026-09-28 10:48:27,074] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_data.json
+[2026-09-28 10:48:27,074] multiqc                                            [INFO   ]  Report      : results/fastqc_raw/multiqc_report.html
+[2026-09-28 10:48:27,075] multiqc                                            [INFO   ]  Data        : results/fastqc_raw/multiqc_data
+[2026-09-28 10:48:27,075] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp5f8nwmr7/multiqc_data' to '/home/jzvoa/islet-t2d-project/results/fastqc_raw/multiqc_data'
+[2026-09-28 10:48:27,078] multiqc                                            [DEBUG  ]  Full report path: /home/jzvoa/islet-t2d-project/results/fastqc_raw/multiqc_report.html
+[2026-09-28 10:48:27,330] multiqc                                            [INFO   ]  MultiQC complete
