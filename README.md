@@ -291,6 +291,42 @@ The upstream paths and parameters are defined in the Bash scripts.
 ### 5. Gene Quantification and Count Matrix Preperation:
 
 ### 6. QC, Normalization, and Exploratory Analysis:
+**Inputs**: Gene quantification and count matrix results (`bulk_count_matrix.tsv`) and (`bulk_sample_metadate.tsv`).
+
+This phase assesses the integrity and uniformity of bulk RNA-seq count data  before downstream analysis
+
+  **Quality control (QC):** Examine raw library sizes, identified genes, zero-count genes, and evaluate the count matrix quality across samples
+
+  **Normalization:** To account for variations in sequencing depth, PyDESeq2 is used to estimate sample-specific size factors and produce normalized gene-expression counts.
+
+  **Log Transformation:** Modify the expression values for exploratory analysis by applying a log2 transformation to normalized counts using **log2(normalized counts + 1)**.
+
+  **Exploratory Filtering:** Retain genes with at least  10 in two samples for exploratory analysis
+
+  **Principal Component Analysis (PCA):** Examines differences in sample associations and gene expression profiles between T2D and non-diabetic groups.
+
+  **Sample Distance Analysis:** Produces a Euclidean distance heatmap to examine the similarities and differences between samples
+
+**Outputs**
+- Tables:
+
+QC: `results/tables/QC/qc_metrics.csv`,`results/tables/QC/QC_summary.csv`
+
+Normalization:`results/tables/normalization/library_totals_before_and_after.csv`
+
+PCA: `results/tables/PCA/PCA_coordinates.csv`, `results/tables/PCA/ERR1629984_PC2_gene_contributions.csv`, `results/tables/PCA/PC2_gene_loadings.csv`
+
+Sample Distance: `results/tables/sample_distances/sample_distance_matrix.tsv`
+
+- Figures:
+
+QC: `results/figures/QC/raw_library_size_per_sample.png`
+
+Normalization: `figures/normalization/library_totals.png`
+
+PCA: `results/figures/PCA/PCA_bulk_samples.png`
+
+Sample Distance: `results/figures/sample_distances/sample_distance_heatmap.png`
 
 ### 7. Differential Expression Analysis:
 
