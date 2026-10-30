@@ -292,10 +292,8 @@ The upstream paths and parameters are defined in the Bash scripts.
 
 ### 6. QC, Normalization, and Exploratory Analysis:
 
+> Notebook: [01_bulk_rna_qc_normalization_pca.ipynb](scripts/02_bulk_deseq2/01_bulk_rna_qc_normalization_pca.ipynb)
 
-```bash
-bash scripts/02_bulk_deseq2/01_bulk_rna_qc_normaliztion_pca.ipynb
-```
 
 **Inputs**: Gene quantification and count matrix results (`bulk_count_matrix.tsv`) and (`bulk_sample_metadate.tsv`).
 
