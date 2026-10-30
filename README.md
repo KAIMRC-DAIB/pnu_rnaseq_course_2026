@@ -291,6 +291,12 @@ The upstream paths and parameters are defined in the Bash scripts.
 ### 5. Gene Quantification and Count Matrix Preperation:
 
 ### 6. QC, Normalization, and Exploratory Analysis:
+
+
+```bash
+bash scripts/02_bulk_deseq2/01_bulk_rna_qc_normaliztion_pca.ipynb
+```
+
 **Inputs**: Gene quantification and count matrix results (`bulk_count_matrix.tsv`) and (`bulk_sample_metadate.tsv`).
 
 This phase assesses the integrity and uniformity of bulk RNA-seq count data  before downstream analysis
