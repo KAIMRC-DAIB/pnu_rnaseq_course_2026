@@ -1,0 +1,44 @@
+# Shared inputs
+inputs:
+  counts: data/processed/bulk_counts/Count-matrix/bulk_count_matrix.tsv
+  metadata: data/processed/bulk_counts/Count-matrix/bulk_sample_metadata.tsv
+  gene_annotation: reference/STAR_index_GRCh38/geneInfo.tab
+  differential_expression_results: results/tables/differential_expression/differential_expression_results.csv
+
+# 01 - QC, normalization and PCA
+normalization:
+  data: data/processed/bulk_counts/PyDESeq/Normalization
+  tables: results/tables/normalization
+  figures: results/figures/normalization
+
+quality_control:
+  tables: results/tables/QC
+  figures: results/figures/QC
+
+pca:
+  tables: results/tables/PCA
+  figures: results/figures/PCA
+  n_components: 2
+
+sample_distances:
+  tables: results/tables/sample_distances
+  figures: results/figures/sample_distances
+
+# 02 - Differential expression
+differential_expression:
+  tables: results/tables/differential_expression
+  figures: results/figures/differential_expression
+  alpha: 0.05
+  design: "~condition"
+
+# 03 - Gene Set Enrichment Analysis
+gsea:
+  tables: results/tables/gsea
+  figures: results/figures/gsea
+  native_output: results/gsea_native_output
+  gene_set: "GO_Biological_Process_2025"
+  seed: 6
+  top_plots: 10
+  min_size: 15
+  max_size: 500
+  permutation_num: 1000
