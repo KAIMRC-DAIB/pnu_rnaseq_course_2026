@@ -328,7 +328,7 @@ QC: `results/figures/QC/raw_library_size_per_sample.png`
 
 Normalization: `figures/normalization/library_totals.png`
 
-PCA: `results/figures/PCA/PCA_bulk_samples.png`
+PCA: `results/figures/PCA/PCA_bulk_samples.png`, `results/figures/PCA/PC1 vs hba1c.png`, `results/figures/PCA/PC1 vs bmi.png`, `results/figures/PCA/PC1 vs age.png`, `results/figures/PCA/PC1 by condition.png`, `results/figures/PCA/PC2 by condition.png`, `results/figures/PCA/correlation between Principal Components and Clinical Parameters`
 
 Sample Distance: `results/figures/sample_distances/sample_distance_heatmap.png`
 
