@@ -18,3 +18,4 @@
 # FastQC ZIP archives: keep HTML reports
 /results/fastqc_raw/_fastqc.zip
 /results/fastqc_trimmed/_fastqc.zip
+.DS_Store
