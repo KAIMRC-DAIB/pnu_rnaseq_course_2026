@@ -1,0 +1,15 @@
+Status	ERR1629982_Aligned.sortedByCoord.out.bam	ERR1629983_Aligned.sortedByCoord.out.bam	ERR1629984_Aligned.sortedByCoord.out.bam	ERR1629985_Aligned.sortedByCoord.out.bam	ERR1629986_Aligned.sortedByCoord.out.bam	ERR1629987_Aligned.sortedByCoord.out.bam	ERR1629988_Aligned.sortedByCoord.out.bam
+Assigned	22430017	26573078	24901487	31479095	32081732	21918856	21988398
+Unassigned_Unmapped	0	0	0	0	0	0	0
+Unassigned_Read_Type	0	0	0	0	0	0	0
+Unassigned_Singleton	0	0	0	0	0	0	0
+Unassigned_MappingQuality	0	0	0	0	0	0	0
+Unassigned_Chimera	0	0	0	0	0	0	0
+Unassigned_FragmentLength	0	0	0	0	0	0	0
+Unassigned_Duplicate	0	0	0	0	0	0	0
+Unassigned_MultiMapping	3756748	3771115	3993097	7350652	4241852	6604088	3540845
+Unassigned_Secondary	0	0	0	0	0	0	0
+Unassigned_NonSplit	0	0	0	0	0	0	0
+Unassigned_NoFeatures	881024	1129819	987057	859785	1088296	953295	974029
+Unassigned_Overlapping_Length	0	0	0	0	0	0	0
+Unassigned_Ambiguity	1242066	1553212	1420023	2097620	1687477	1152048	1239039
