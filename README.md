@@ -288,7 +288,69 @@ The upstream paths and parameters are defined in the Bash scripts.
 
 ### 4. Reference Indexing and Alignment:
 
-### 5. Gene Quantification and Count Matrix Preperation:
+Trimmed paired-end reads from seven whole-islet bulk RNA-seq samples
+(ERR1629982–ERR1629988) were aligned to the human GRCh38 primary assembly
+using STAR v2.7.11b and the matching GENCODE v44 primary-assembly annotation.
+
+The reference files were:
+- `GRCh38.primary_assembly.genome.fa`
+- `gencode.v44.primary_assembly.annotation.gtf`
+
+The documented index-generation settings were 16 threads,
+`--sjdbOverhang 100`, `--genomeSAindexNbases 14`, and
+`--genomeChrBinNbits 18`. The same reference index was used for all samples.
+
+Alignment used eight threads per sample, `zcat` for compressed FASTQ input,
+`--outSAMtype BAM SortedByCoordinate`, and `--quantMode GeneCounts`.
+The workflow includes BAM indexing with samtools and a basic integrity
+check using `samtools quickcheck`.
+
+**Script:** [04_star_alignment.sh](scripts/01_bulk_qc_align/04_star_alignment.sh)
+
+**Main outputs:** coordinate-sorted BAM files, STAR mapping logs,
+splice-junction tables, and strand-specific gene-count tables.
+BAM files and the reference index are excluded from GitHub.
+
+### 5. Gene Quantification and Count Matrix Preparation:
+
+Gene-level raw counts were generated using featureCounts v2.0.6 with
+the same GENCODE v44 annotation. STAR `ReadsPerGene.out.tab` totals
+supported reverse-stranded counting across all seven samples.
+
+The counting settings were:
+- `-T 4`: four processing threads.
+- `-p --countReadPairs`: count paired-end fragments.
+- `-s 2`: reverse-stranded counting.
+- `-t exon -g gene_id`: summarize exon overlaps by gene identifier.
+
+Multimapping and multi-gene-overlapping fragments were not counted
+under the selected default settings.
+
+**Script:** [05_bulk_featurecounts.sh](scripts/01_bulk_qc_align/05_bulk_featurecounts.sh)
+
+**Outputs:**
+- [Full gene-count table](data/processed/bulk_counts/featureCounts/bulk_all_gene_counts.txt)
+- [Assignment summary](data/processed/bulk_counts/featureCounts/bulk_all_gene_counts.txt.summary)
+- [Gene-by-donor count matrix](data/processed/bulk_counts/Count-matrix/bulk_count_matrix.tsv)
+
+The validated matrix contains **62,754 genes and seven donor samples**.
+Versioned Ensembl gene identifiers and nonnegative integer counts were
+retained. Matrix column totals were checked against the featureCounts
+Assigned totals, and donor metadata were matched to the sample order.
+Normalization and expression filtering belong to subsequent analysis steps.
+
+Gene-assignment percentages ranged from **71.6% to 82.1%**.
+ERR1629987 had the lowest assignment rate and the highest proportion
+classified as multimapping; this observation alone was not used to
+exclude the sample. STAR mapping percentages and featureCounts
+assignment percentages use different denominators and should not
+be treated as interchangeable.
+
+**Local execution:** the scripts retain the original local analysis
+paths. Review the input paths and reference location before running
+them on another computer. The featureCounts script regenerates its
+outputs in the selected BAM directory; the links above point to the
+results archived in this repository.
 
 ### 6. QC, Normalization, and Exploratory Analysis:
 
