@@ -507,9 +507,21 @@ non-diabetic samples using an explicit contrast.
 - Volcano plot: `results/figures/differential_expression/volcano_plot.png`
 - MA plot: `results/figures/differential_expression/MA_plot.png`
 
-### 8. Gene Set Enrichment Analysis:
+### 8. Gene Set Enrichment Analysis (GSEA):
 
+**Notebook:** `03_gene_set_enrichment_analysis.ipynb`
 
+**Inputs:** DESeq2 differential expression results and gene annotation file (`geneInfo.tab`).
+
+GSEApy was used to identify enriched biological pathways using the `GO_Biological_Process_2025` gene set collection. Genes were ranked by the DESeq2 Wald statistic (`stat`).
+
+**Results:** A total of 545 significant pathways were identified (FDR < 0.05). Enriched pathways were mainly related to extracellular matrix organization, integrin signaling, inflammation, and amino acid starvation responses.
+
+**Outputs:**
+
+- Tables: `results/tables/gsea/`
+- Figures: `results/figures/gsea/`
+- Native GSEA results: `results/gsea_native_output/`
 ## Reproducing the Analysis:
 
 ### From Raw Reads:
