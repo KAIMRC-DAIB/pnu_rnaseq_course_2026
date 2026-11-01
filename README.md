@@ -288,7 +288,127 @@ The upstream paths and parameters are defined in the Bash scripts.
 
 ### 4. Reference Indexing and Alignment:
 
-### 5. Gene Quantification and Count Matrix Preperation:
+**Script:** [04_star_alignment.sh](scripts/01_bulk_qc_align/04_star_alignment.sh)
+
+**Requirements:** the `bulk-rna` environment, STAR v2.7.11b,
+samtools, Python, and gzip utilities. Human-genome indexing and
+alignment require a workstation or cluster with sufficient RAM and storage.
+
+**Reference files:** place these matching GENCODE v44 / GRCh38
+primary-assembly files in `$HOME/reference`:
+- `GRCh38.primary_assembly.genome.fa`
+- `gencode.v44.primary_assembly.annotation.gtf`
+
+**Default input and output paths:**
+- Trimmed FASTQ directory: `$HOME/islet-t2d-work/data/processed/bulk_fastq_trimmed`
+- STAR index: `$HOME/reference/STAR_index_GRCh38`
+- BAM and STAR outputs: `$HOME/islet-t2d-work/bulk_bam`
+- Execution logs: `$HOME/islet-t2d-work/results/alignment_logs`
+
+For each sample from ERR1629982 to ERR1629988, the trimmed
+paired-end files must be named:
+- `<sample>_1.trimmed.fastq.gz`
+- `<sample>_2.trimmed.fastq.gz`
+
+Run the following commands from the repository root:
+
+```bash
+# Activate the analysis environment
+conda activate bulk-rna
+
+# Build the reference index only if a compatible index is unavailable
+bash scripts/01_bulk_qc_align/04_star_alignment.sh index
+
+# Align the seven samples and index their coordinate-sorted BAM files
+bash scripts/01_bulk_qc_align/04_star_alignment.sh align
+
+# Check the existing BAM files without rerunning alignment
+bash scripts/01_bulk_qc_align/04_star_alignment.sh check
+
+# Display mapping statistics from existing STAR logs
+bash scripts/01_bulk_qc_align/04_star_alignment.sh summary
+```
+
+Skip `index` when reusing a compatible existing index.
+The script refuses to overwrite a nonempty index or existing
+sample alignment outputs.
+
+The index uses 16 threads, `sjdbOverhang=100`,
+`genomeSAindexNbases=14`, and `genomeChrBinNbits=18`.
+Alignment uses eight threads, coordinate-sorted BAM output,
+and STAR `GeneCounts`. Other alignment parameters are recorded
+in the script.
+
+Paths and thread counts can be overridden through environment
+variables. For example:
+
+```bash
+# Use trimmed FASTQ files stored outside the default directory
+TRIM_DIR="/path/to/trimmed_fastq" \
+  bash scripts/01_bulk_qc_align/04_star_alignment.sh align
+```
+
+**Outputs:** `<sample>_Aligned.sortedByCoord.out.bam`, its BAM
+index, STAR logs, `<sample>_SJ.out.tab`, and
+`<sample>_ReadsPerGene.out.tab`. Large reference and alignment
+files are not stored in this repository.
+
+### 5. Gene Quantification and Count Matrix Preparation:
+
+**Script:** [05_bulk_featurecounts.sh](scripts/01_bulk_qc_align/05_bulk_featurecounts.sh)
+
+**Requirements:** the `bulk-rna` environment with featureCounts
+v2.0.6, samtools, and Python.
+
+**Inputs:**
+- Seven coordinate-sorted BAM files from section 4.
+- The corresponding STAR `ReadsPerGene.out.tab` files.
+- `$HOME/reference/gencode.v44.primary_assembly.annotation.gtf`.
+- The cleaned donor table: `$HOME/Downloads/donor_metadata_clean.csv.csv`.
+- The original study metadata: `$HOME/Downloads/E-MTAB-5060.sdrf.txt`.
+
+The original donor table and SDRF are required because the script
+validates donor metadata as well as preparing the count matrix.
+The archived `bulk_sample_metadata.tsv` is an output, not a replacement
+for these two inputs.
+
+Run from the repository root:
+
+```bash
+# Run counting, matrix validation, and donor-metadata matching
+bash scripts/01_bulk_qc_align/05_bulk_featurecounts.sh
+```
+
+The script activates `bulk-rna` through
+`$HOME/miniforge3/etc/profile.d/conda.sh`. Adjust this activation
+path if Conda is installed elsewhere.
+
+The default BAM directory is `$HOME/islet-t2d-work/bulk_bam`.
+Input paths can be overridden using `BAM_DIR`, `GTF`,
+`DONOR_METADATA`, and `SDRF`.
+
+Counting uses `-T 4 -p --countReadPairs -s 2 -t exon -g gene_id`:
+paired-end fragments are counted with reverse-stranded settings,
+and exon features are grouped by gene ID. The selected strandedness
+reflects the STAR gene-count totals reviewed for this dataset.
+
+The script validates sample order, unique gene identifiers,
+nonnegative integer counts, and agreement between matrix column
+totals and featureCounts Assigned totals. It also matches donor
+metadata to the matrix sample order. Counts remain unnormalized
+and unfiltered.
+
+**Generated files** are written to the selected BAM directory.
+Rerunning the script replaces files with the same output names.
+The repository copies are:
+- [Full featureCounts table](data/processed/bulk_counts/featureCounts/bulk_all_gene_counts.txt)
+- [Assignment summary](data/processed/bulk_counts/featureCounts/bulk_all_gene_counts.txt.summary)
+- [Raw gene-by-donor count matrix](data/processed/bulk_counts/Count-matrix/bulk_count_matrix.tsv)
+- [Matched donor metadata](data/processed/bulk_counts/Count-matrix/bulk_sample_metadata.tsv)
+
+For downstream analysis without rerunning alignment or counting,
+use the archived count matrix and matched metadata, then continue
+with section 6.
 
 ### 6. QC, Normalization, and Exploratory Analysis:
 
@@ -328,15 +448,67 @@ QC: `results/figures/QC/raw_library_size_per_sample.png`
 
 Normalization: `figures/normalization/library_totals.png`
 
-PCA: `results/figures/PCA/PCA_bulk_samples.png`
+PCA: `results/figures/PCA/PCA_bulk_samples.png`, `results/figures/PCA/PC1 vs hba1c.png`, `results/figures/PCA/PC1 vs bmi.png`, `results/figures/PCA/PC1 vs age.png`, `results/figures/PCA/PC1 by condition.png`, `results/figures/PCA/PC2 by condition.png`, `results/figures/PCA/correlation between Principal Components and Clinical Parameters`
 
 Sample Distance: `results/figures/sample_distances/sample_distance_heatmap.png`
 
 ### 7. Differential Expression Analysis:
 
+**Notebook:** [02_bulk_rna_DEseq.ipynb](scripts/02_bulk_deseq2/02_bulk_rna_DEseq.ipynb)
+
+**Requirements:** the `bulk-rna` environment with PyDESeq2 v0.4.10,
+Python, pandas, NumPy, Matplotlib, PyYAML, and Jupyter Notebook.
+
+**Inputs:**
+- Raw gene count matrix: `data/processed/bulk_counts/Count-matrix/bulk_count_matrix.tsv`
+- Sample metadata: `data/processed/bulk_counts/Count-matrix/bulk_sample_metadata.tsv`
+
+This stage performs differential expression analysis to compare
+gene expression between T2D and non-diabetic pancreatic islet samples.
+
+Before model fitting, sample identifiers in the count matrix
+and metadata are checked and aligned. Count values are checked
+to ensure they are numeric, nonnegative, and integer-valued.
+Genes with zero counts across all samples are removed before
+analysis.
+
+PyDESeq2 is used to fit a single-factor model with `condition`
+as the design factor. The analysis tests T2D against
+non-diabetic samples using an explicit contrast.
+
+**Analysis Parameters:**
+
+| Parameter | Setting |
+|---|---|
+| Design factor | `condition` |
+| Contrast | T2D vs Non-diabetic |
+| Statistical test | Wald test |
+| Significance threshold | `0.05` |
+| Multiple testing correction | Benjamini-Hochberg (BH) |
+| Independent filtering | Enabled (PyDESeq2 default) |
+| Cook's distance filtering | Enabled (PyDESeq2 default) |
+| Gene filtering | Remove genes with zero counts across all samples |
+| Model-fitting CPUs | 2 |
+
+**Outputs:**
+
+- Full differential expression results:
+  `results/tables/differential_expression/differential_expression_results.csv`
+- Summary table:
+  `results/tables/differential_expression/differential_expression_summary.csv`
+- Significant genes:
+  `results/tables/differential_expression/significant_genes.csv`
+- Upregulated genes:
+  `results/tables/differential_expression/upregulated_genes.csv`
+- Downregulated genes:
+  `results/tables/differential_expression/downregulated_genes.csv`
+
+**Figures:**
+- Volcano plot: `results/figures/differential_expression/volcano_plot.png`
+- MA plot: `results/figures/differential_expression/MA_plot.png`
+
 ### 8. Gene Set Enrichment Analysis:
 
-### Comparision with the Reference Study:
 
 ## Reproducing the Analysis:
 
@@ -374,6 +546,7 @@ The repository excludes large input and intermediate files, including:
 - BAM files and associated alignment indexes.
 - The reference genome and annotation.
 - STAR index files, except `geneInfo.tab`.
+- .DS_Store
 
 Excluded data must be obtained or generated locally. files excluded from the repository are listed in `.gitignore`.
 

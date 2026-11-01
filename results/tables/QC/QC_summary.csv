@@ -1,0 +1,13 @@
+,value
+n_genes_input,62754
+n_samples,7
+n_T2D,4
+n_non_diabetic,3
+duplicate_gene_ids,0
+duplicate_metadata_sample_ids,0
+missing_count_values,0
+negative_count_values,0
+non_integer_count_values,0
+genes_retained_for_exploration,18822
+normalization,PyDESeq2 fit_size_factors; normalized counts from dds.layers['normed_counts']
+visualization_transform,log2(normalized count + 1)
