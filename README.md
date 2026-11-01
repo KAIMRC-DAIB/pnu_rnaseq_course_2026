@@ -509,7 +509,6 @@ non-diabetic samples using an explicit contrast.
 
 ### 8. Gene Set Enrichment Analysis:
 
-### Comparision with the Reference Study:
 
 ## Reproducing the Analysis:
 
@@ -547,6 +546,7 @@ The repository excludes large input and intermediate files, including:
 - BAM files and associated alignment indexes.
 - The reference genome and annotation.
 - STAR index files, except `geneInfo.tab`.
+- .DS_Store
 
 Excluded data must be obtained or generated locally. files excluded from the repository are listed in `.gitignore`.
 
