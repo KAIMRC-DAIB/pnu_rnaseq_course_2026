@@ -509,8 +509,7 @@ non-diabetic samples using an explicit contrast.
 
 ### 8. Gene Set Enrichment Analysis (GSEA):
 
-**Notebook:** `03_gene_set_enrichment_analysis.ipynb`
-
+**Notebook:** [03_gene_set_enrichment_analysis.ipynb] (scripts/03_gene_set_enrichment_analysis 03_gene_set_enrichment_analysis.ipynb)
 **Inputs:** DESeq2 differential expression results and gene annotation file (`geneInfo.tab`).
 
 GSEApy was used to identify enriched biological pathways using the `GO_Biological_Process_2025` gene set collection. Genes were ranked by the DESeq2 Wald statistic (`stat`).
