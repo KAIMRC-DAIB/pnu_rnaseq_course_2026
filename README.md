@@ -457,45 +457,44 @@ Sample Distance: `results/figures/sample_distances/sample_distance_heatmap.png`
 **Notebook:** [02_bulk_rna_DEseq.ipynb](scripts/02_bulk_deseq2/02_bulk_rna_DEseq.ipynb)
 
 **Requirements:** the `bulk-rna` environment with PyDESeq2 v0.4.10,
-Python, pandas, NumPy, and Matplotlib.
+Python, pandas, NumPy, Matplotlib, PyYAML, and Jupyter Notebook.
 
 **Inputs:**
 - Raw gene count matrix: `data/processed/bulk_counts/Count-matrix/bulk_count_matrix.tsv`
 - Sample metadata: `data/processed/bulk_counts/Count-matrix/bulk_sample_metadata.tsv`
 
-This stage identifies genes with differential expression between
-T2D and non-diabetic pancreatic islet samples.
+This stage performs differential expression analysis to compare
+gene expression between T2D and non-diabetic pancreatic islet samples.
 
-Before analysis, genes with zero counts across all samples were
-removed from the count matrix, reducing the number of genes from
-62,754 to 33,432.
+Before model fitting, sample identifiers in the count matrix
+and metadata are checked and aligned. Count values are checked
+to ensure they are numeric, nonnegative, and integer-valued.
+Genes with zero counts across all samples are removed before
+analysis.
 
-PyDESeq2 is used to perform differential expression analysis.
-The model uses condition as the design factor, comparing T2D
-against non-diabetic samples.
+PyDESeq2 is used to fit a single-factor model with `condition`
+as the design factor. The analysis tests T2D against
+non-diabetic samples using an explicit contrast.
 
-A Wald test is performed to evaluate differential expression.
-P-values are adjusted for multiple testing using the
-Benjamini-Hochberg method. Genes with an adjusted p-value
-(padj) below 0.05 are considered significantly differentially
-expressed.
+**Analysis Parameters:**
 
-**Results:**
-
-A total of 133 significantly differentially expressed genes
-were identified:
-- 105 upregulated genes in T2D.
-- 28 downregulated genes in T2D.
-
-A positive log2 fold change indicates higher expression in
-T2D, while a negative log2 fold change indicates lower
-expression compared with non-diabetic samples.
+| Parameter | Setting |
+|---|---|
+| Design factor | `condition` |
+| Contrast | T2D vs Non-diabetic |
+| Statistical test | Wald test |
+| Significance threshold | `0.05` |
+| Multiple testing correction | Benjamini-Hochberg (BH) |
+| Independent filtering | Enabled (PyDESeq2 default) |
+| Cook's distance filtering | Enabled (PyDESeq2 default) |
+| Gene filtering | Remove genes with zero counts across all samples |
+| Model-fitting CPUs | 2 |
 
 **Outputs:**
 
 - Full differential expression results:
   `results/tables/differential_expression/differential_expression_results.csv`
-- Summary:
+- Summary table:
   `results/tables/differential_expression/differential_expression_summary.csv`
 - Significant genes:
   `results/tables/differential_expression/significant_genes.csv`
