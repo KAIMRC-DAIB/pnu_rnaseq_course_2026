@@ -1,0 +1,8 @@
+metric,value
+input_DE_rows,33432
+rows_with_gene_symbol_and_stat_before_deduplication,33432
+rows_in_final_ranked_list,33256
+rows_without_gene_symbol_or_stat,0
+duplicate_symbols_removed,176
+missing_stat_in_input,0
+non_finite_stat_removed,0
